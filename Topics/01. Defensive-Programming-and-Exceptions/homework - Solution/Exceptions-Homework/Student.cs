@@ -12,19 +12,17 @@ public class Student
     {
         if (firstName == null)
         {
-            Console.WriteLine("Invalid first name!");
-            Environment.Exit(0);
+            throw new ArgumentNullException("First name can not be null");
         }
 
         if (lastName == null)
         {
-            Console.WriteLine("Invalid first name!");
-            Environment.Exit(0);
+            throw new ArgumentNullException("Last name can not be null");
         }
 
         this.FirstName = firstName;
         this.LastName = lastName;
-        this.Exams = exams;
+        this.Exams = exams ?? new List<Exam>();
     }
 
     public IList<ExamResult> CheckExams()
@@ -53,23 +51,19 @@ public class Student
     {
         if (this.Exams == null)
         {
-            // Cannot calculate average on missing exams
-            throw new Exception();
+            throw new ArgumentNullException("Exams list is null");
         }
 
         if (this.Exams.Count == 0)
         {
-            // No exams --> return -1;
-            return -1;
+            throw new InvalidOperationException("The student has no exams");
         }
 
         double[] examScore = new double[this.Exams.Count];
         IList<ExamResult> examResults = CheckExams();
         for (int i = 0; i < examResults.Count; i++)
         {
-            examScore[i] = 
-                ((double)examResults[i].Grade - examResults[i].MinGrade) / 
-                (examResults[i].MaxGrade - examResults[i].MinGrade);
+            examScore[i] = ((double)examResults[i].Grade - examResults[i].MinGrade) / (examResults[i].MaxGrade - examResults[i].MinGrade);
         }
 
         return examScore.Average();
