@@ -11,19 +11,22 @@ public class ExamResult
     {
         if (grade < 0)
         {
-            throw new Exception();
+            throw new ArgumentException("grade must be >=0");
         }
+
         if (minGrade < 0)
         {
-            throw new Exception();
+            throw new ArgumentException("minGrade must be >=0");
         }
+
         if (maxGrade <= minGrade)
         {
-            throw new Exception();
+            throw new ArgumentException("maxGrade must be greater than minGrade");
         }
-        if (comments == null || comments == "")
+
+        if (string.IsNullOrEmpty(comments))
         {
-            throw new Exception();
+            throw new ArgumentNullException("comments can not be null nor empty");
         }
 
         this.Grade = grade;
