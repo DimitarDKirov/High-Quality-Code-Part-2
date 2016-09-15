@@ -6,6 +6,26 @@ class ExceptionsHomework
 {
     public static T[] Subsequence<T>(T[] arr, int startIndex, int count)
     {
+        if (arr == null || arr.Length == 0)
+        {
+            throw new ArgumentNullException("Input array can not be null nor empty");
+        }
+
+        if (startIndex < 0 || arr.Length <= startIndex)
+        {
+            throw new ArgumentException("startIndex must be between 0 and array length-1");
+        }
+
+        if (count < 0)
+        {
+            throw new ArgumentException("Count nust be >= 0");
+        }
+
+        if (startIndex + count >= arr.Length)
+        {
+            throw new ArgumentException("The sum of startIndex and count must be less than array length");
+        }
+
         List<T> result = new List<T>();
         for (int i = startIndex; i < startIndex + count; i++)
         {
@@ -16,6 +36,7 @@ class ExceptionsHomework
 
     public static string ExtractEnding(string str, int count)
     {
+
         if (count > str.Length)
         {
             return "Invalid count!";
