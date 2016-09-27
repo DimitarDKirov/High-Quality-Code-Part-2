@@ -9,6 +9,7 @@ namespace CompareSimpleMaths
 {
     public class IntOperations
     {
+
         public TimeSpan Add(int[] intArray)
         {
             int result = 0;
@@ -24,7 +25,7 @@ namespace CompareSimpleMaths
             return stopwatch.Elapsed;
         }
 
-        public  TimeSpan Substract(int[] intArray)
+        public TimeSpan Substract(int[] intArray)
         {
             int result = 0;
             int numbersCount = intArray.Length;
@@ -39,7 +40,7 @@ namespace CompareSimpleMaths
             return stopwatch.Elapsed;
         }
 
-        public  TimeSpan Multiply(int[] intArray)
+        public TimeSpan Multiply(int[] intArray)
         {
             int result = 1;
             int numbersCount = intArray.Length;
@@ -54,7 +55,7 @@ namespace CompareSimpleMaths
             return stopwatch.Elapsed;
         }
 
-        public  TimeSpan Divide(int[] intArray)
+        public TimeSpan Divide(int[] intArray)
         {
             int result = int.MaxValue;
             int numbersCount = intArray.Length;
@@ -69,7 +70,7 @@ namespace CompareSimpleMaths
             return stopwatch.Elapsed;
         }
 
-        public  TimeSpan Increment(int stepsNumber)
+        public TimeSpan Increment(int stepsNumber)
         {
             int result = 0;
             Stopwatch stopwatch = new Stopwatch();
@@ -82,5 +83,7 @@ namespace CompareSimpleMaths
             stopwatch.Stop();
             return stopwatch.Elapsed;
         }
+
+
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
-namespace Task3
+[assembly: InternalsVisibleTo("Matrica.Tests")]
+namespace RotatingMatrix
 {
     class Matrix
     {
-        static void NextDirection(ref int deltaX, ref int deltaY)
+        internal static void NextDirection(ref int deltaX, ref int deltaY)
         {
             int[] directionsX = { 1, 1, 1, 0, -1, -1, -1, 0 };
             int[] directionsY = { 1, 0, -1, -1, -1, 0, 1, 1 };
@@ -29,7 +31,7 @@ namespace Task3
             deltaY = directionsY[currentDirection + 1];
         }
 
-        static bool CanMove(int[,] matrix, int x, int y)
+        internal static bool CanMove(int[,] matrix, int x, int y)
         {
             int[] directionsX = { 1, 1, 1, 0, -1, -1, -1, 0 };
             int[] directionsY = { 1, 0, -1, -1, -1, 0, 1, 1 };
@@ -58,7 +60,7 @@ namespace Task3
             return false;
         }
 
-        static void FindUnvisitedCell(int[,] matrix, out int row, out int col)
+        internal static void FindUnvisitedCell(int[,] matrix, out int row, out int col)
         {
             row = 0;
             col = 0;

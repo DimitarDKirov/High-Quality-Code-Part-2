@@ -21,7 +21,12 @@ namespace CompareSimpleMaths
         {
             for (int i = 0; i < this.array.Length; i++)
             {
-                T number = (dynamic)rand.Next(-10000, 10000);
+                T number;
+                do
+                {
+                    number = (dynamic)rand.Next(-10, 10);
+                } while (Convert.ToInt32(number) == 0);
+
                 this.array[i] = number;
             }
 
