@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleUserInterface.cs" />
+    <Compile Include="EntryPoint.cs" />
     <Compile Include="IUserInterface.cs" />
     <Compile Include="Matrix.cs" />
   </ItemGroup>

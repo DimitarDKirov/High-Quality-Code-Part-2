@@ -23,7 +23,7 @@ namespace RotatingMatrix
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    Console.Write("{0:5}", matrix[row, col]);
+                    Console.Write("{0,5}", matrix[row, col]);
                 }
 
                 Console.WriteLine();
