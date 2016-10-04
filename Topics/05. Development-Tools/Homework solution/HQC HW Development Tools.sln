@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhones", "problem1\MobilePhones.csproj", "{FE521EFD-6C51-4985-8F93-EE57077685A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhones.Test", "Battery.Test\MobilePhones.Test.csproj", "{DE140F55-D53F-4A80-B9E3-AD193C716CB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE521EFD-6C51-4985-8F93-EE57077685A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE521EFD-6C51-4985-8F93-EE57077685A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE521EFD-6C51-4985-8F93-EE57077685A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE521EFD-6C51-4985-8F93-EE57077685A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE140F55-D53F-4A80-B9E3-AD193C716CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE140F55-D53F-4A80-B9E3-AD193C716CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE140F55-D53F-4A80-B9E3-AD193C716CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE140F55-D53F-4A80-B9E3-AD193C716CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

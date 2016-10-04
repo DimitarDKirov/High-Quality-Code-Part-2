@@ -1,0 +1,35 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+using System;
+using MobilePhones;
+
+class CallsGenerator
+        {
+        <#int NumberOfCalls = 50;    
+        Random rand=new Random();#>
+		private DateTime refDate = new DateTime(2000, 1, 1);
+		private Call[] calls=new Call[<#=NumberOfCalls#>];
+		public CallsGenerator(){
+        <#for (int i = 0; i < NumberOfCalls; i++)
+            {
+                TimeSpan timeOffset = new TimeSpan(1000-rand.Next(2000), rand.Next(23), rand.Next(59),rand.Next(59));
+                int randomNumber = rand.Next(11111111, 99999999);
+                string randomPhoneNumber = string.Concat("0", randomNumber);#>
+                calls[<#=i#>]=  new Call(refDate.AddTicks(<#=timeOffset.Ticks#>), "<#=randomPhoneNumber#>", <#=(ushort)rand.Next(3600)#>);
+          <#}#>
+		}
+
+			public Call[] Calls
+			{
+				get
+				{
+					return (Call[])calls.Clone();
+				}
+			}
+        }
+    
