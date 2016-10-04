@@ -21,6 +21,10 @@
             Battery iPhoneBat = new Battery("iPhone bat", 200, 2000, BatteryType.LiIon);
             GSM iPhone = new GSM("iPhone4S", "Apple", 1000f, "Happy Iphone Owner", iPhoneBat, 3.5f);
             Console.WriteLine(iPhone);
+            iPhone.AddCall(new Call(DateTime.Now, "021111111", 540));
+            iPhone.AddCall(new Call("2016-10-01", "19:19:20", "0878123452", 145));
+            iPhone.ClearCallHistory();
+
             GSM lgA390 = new GSM("A390-Dual SIM", "LG", 115, "Kirov", new Battery("1700 mAh", 800, 1700, BatteryType.LiIon), 2.1f);
             Call call1 = new Call("10.10.14", "10:05", "088812346", 18);
             Call cal2 = new Call(DateTime.Now, "0899999999", 150);
@@ -28,8 +32,17 @@
             lgA390.AddCall(call1);
             lgA390.AddCall(cal2);
             lgA390.AddCall(cal3);
+            lgA390.ClearCallHistory();
             Console.WriteLine(lgA390);
             Console.WriteLine(lgA390.CalcCallsPrice(0.37f));
+
+            //Just test logging exceptions
+            try
+            {
+                var testPhone = new GSM(string.Empty, string.Empty);
+            }
+            catch (Exception e)
+            { }
 
             //new GSM(" ", " ");
             //call1.CallTime = null;
