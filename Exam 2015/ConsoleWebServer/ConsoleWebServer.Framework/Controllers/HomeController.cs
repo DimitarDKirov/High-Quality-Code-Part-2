@@ -1,6 +1,6 @@
 ﻿public class HomeController : Controller
 {
-    public HomeController(HttpRq request) : base(request) { }
+    public HomeController(HttpRequest request) : base(request) { }
 
     public IActionResult Index(string param)
     {

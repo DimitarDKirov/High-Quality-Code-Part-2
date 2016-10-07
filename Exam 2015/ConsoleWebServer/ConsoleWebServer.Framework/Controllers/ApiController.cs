@@ -3,7 +3,7 @@ using System.Linq;
 
 public class ApiController : Controller
 {
-    public ApiController(HttpRq request) : base(request)
+    public ApiController(HttpRequest request) : base(request)
     { }
 
     public IActionResult ReturnMe(string param)
@@ -24,9 +24,6 @@ public class ApiController : Controller
             throw new ArgumentException("Invalid referer!");
         }
 
-        return new JsonActionResultWithCors(
-            this.Request,
-            new { date = DateTime.Now.ToString("yyyy-MM-dd"), moreInfo = "Data available for " + domainName },
-            domainName);
+        return new JsonActionResultWithCors(this.Request, new { date = DateTime.Now.ToString("yyyy-MM-dd"), moreInfo = "Data available for " + domainName }, domainName);
     }
 }

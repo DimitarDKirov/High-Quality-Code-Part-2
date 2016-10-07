@@ -1,60 +1,55 @@
-﻿using System;using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text;
-using R = HttpRq;
-public class HttpRq
+
+public class HttpRequest
 {
-    public Version ProtocolVersion { get; protected set; }
-    public HttpRq(string m, string uri, string httpVersion)
+    public HttpRequest(string method, string uri, string httpVersion)
     {
         this.ProtocolVersion = Version.Parse(httpVersion.ToLower().Replace("HTTP/".ToLower(), string.Empty));
         this.Headers = new SortedDictionary<string, ICollection<string>>();
         this.Uri = uri;
-        this.Method = m;
+        this.Method = method;
         this.Action = new ActionDescriptor(uri);
     }
-    public IDictionary<string, ICollection<string>> Headers { get; protected set; }
 
+    public IDictionary<string, ICollection<string>> Headers { get; protected set; }
+    public string Method { get; private set; }
+    public Version ProtocolVersion { get; protected set; }
     public string Uri { get; private set; }
-    public void AddHeader(string name, string valueValueValue)
+    public ActionDescriptor Action { get; private set; }
+
+    public void AddHeader(string name, string value)
     {
         if (!this.Headers.ContainsKey(name))
         {
             this.Headers.Add(name, new HashSet<string>(new List<string>()));
         }
 
-        this.Headers[name].Add(valueValueValue);
+        this.Headers[name].Add(value);
     }
 
-
-
-    public string Method { get; private set; }
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.AppendLine(
-            string.Format(
-                "{0} {1} {2}{3}",
-                this.Method,
-                this.Action,
-                "HTTP/",
-                this.ProtocolVersion));
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine(string.Format("{0} {1} {2}{3}", this.Method, this.Action, "HTTP/", this.ProtocolVersion));
+
         var headerStringBuilder = new StringBuilder();
         foreach (var key in this.Headers.Keys)
         {
             headerStringBuilder.AppendLine(string.Format("{0}: {1}", key, string.Join("; ", this.Headers[key])));
         }
-        sb.AppendLine(headerStringBuilder.ToString());
-        return sb.ToString();
+
+        stringBuilder.AppendLine(headerStringBuilder.ToString());
+        return stringBuilder.ToString();
     }
 
-    public ActionDescriptor Action { get; private set; }
-
-    public R Parse(string reqAsStr)
+    public HttpRequest Parse(string requestAsString)
     {
-        var textReader = new StringReader(reqAsStr);
+        var textReader = new StringReader(requestAsString);
         var firstLine = textReader.ReadLine();
         var requestObject = CreateRequest(firstLine);
 
@@ -63,30 +58,27 @@ public class HttpRq
         {
             this.AddHeaderToRequest(requestObject, line);
         }
+
         return requestObject;
     }
 
-    private R CreateRequest(string frl)
+    private HttpRequest CreateRequest(string firstRequestLine)
     {
-        var firstRequestLineParts = frl.Split(' ');
+        var firstRequestLineParts = firstRequestLine.Split(' ');
         if (firstRequestLineParts.Length != 3)
         {
-            throw new HttpNotFound.ParserException(
-                "Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
+            throw new ParserException("Invalid format for the first request line. Expected format: [Method] [Uri] HTTP/[Version]");
         }
-        var requestObject = new R(
-            firstRequestLineParts[0],
-            firstRequestLineParts[1],
-            firstRequestLineParts[2]);
 
+        var requestObject = new HttpRequest(firstRequestLineParts[0], firstRequestLineParts[1], firstRequestLineParts[2]);
         return requestObject;
     }
 
-    private void AddHeaderToRequest(R r, string headerLine)
+    private void AddHeaderToRequest(HttpRequest request, string headerLine)
     {
-        var hp = headerLine.Split(new[] { ':' }, 2);
-        var hn = hp[0].Trim();
-        var hv = hp.Length == 2 ? hp[1].Trim() : string.Empty;
-        r.AddHeader(hn, hv);
+        var headerParts = headerLine.Split(new[] { ':' }, 2);
+        var headerName = headerParts[0].Trim();
+        var headerValue = headerParts.Length == 2 ? headerParts[1].Trim() : string.Empty;
+        request.AddHeader(headerName, headerValue);
     }
 }

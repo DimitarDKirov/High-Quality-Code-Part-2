@@ -70,17 +70,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvoker.cs" />
+    <Compile Include="ActionResult\ContentActionResultWithCors.cs" />
+    <Compile Include="ActionResult\ContentActionResultWithCorsWithoutCaching.cs" />
+    <Compile Include="ActionResult\ContentActionResultWithoutCaching.cs" />
+    <Compile Include="ActionResult\JsonActionResultWithCors.cs" />
+    <Compile Include="ActionResult\JsonActionResultWithCorsWithoutCaching.cs" />
+    <Compile Include="ActionResult\JsonActionResultWithoutCaching.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="HighQualityCodeExamPointsProvider.cs" />
-    <Compile Include="JsonActionResult.cs" />
-    <Compile Include="ContentActionResult.cs" />
-    <Compile Include="NewActionInvoker.cs" />
+    <Compile Include="ActionResult\JsonActionResult.cs" />
+    <Compile Include="ActionResult\ContentActionResult.cs" />
+    <Compile Include="Exceptions\ParserException.cs" />
     <Compile Include="StaticFileHandler.cs" />
-    <Compile Include="HttpNotFound.cs" />
+    <Compile Include="Exceptions\HttpNotFoundException.cs" />
     <Compile Include="HttpRequest.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="Controllers\Controller.cs" />
     <Compile Include="HttpResponse.cs" />
-    <Compile Include="IActionResult.cs" />
-    <Compile Include="IResponseProvider.cs" />
+    <Compile Include="Contracts\IActionResult.cs" />
+    <Compile Include="Contracts\IResponseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ActionDescriptor.cs" />
     <Compile Include="ResponseProvider.cs" />
@@ -89,6 +97,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

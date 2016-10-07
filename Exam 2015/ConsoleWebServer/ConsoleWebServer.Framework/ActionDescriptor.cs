@@ -7,7 +7,7 @@ public class ActionDescriptor
     {
         uri = uri ?? string.Empty;
 
-        var uriParts = uri.Split(new[] { '/', '/', '/', '/', '/' }.ToList().AsEnumerable().AsQueryable().ToArray(), StringSplitOptions.RemoveEmptyEntries);
+        var uriParts = uri.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
         this.ControllerName = uriParts.Length > 0 ? uriParts[0] : "Home";
         this.ActionName = uriParts.Length > 1 ? uriParts[1] : "Index";

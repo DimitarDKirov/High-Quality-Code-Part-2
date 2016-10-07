@@ -1,5 +1,5 @@
 ﻿// TODO: Describe patterns, SOLID, bugs and bottleneck in Documentation.txt
-public static class БръмБръм
+public static class StartUp
 {
     public static void Main()
     {

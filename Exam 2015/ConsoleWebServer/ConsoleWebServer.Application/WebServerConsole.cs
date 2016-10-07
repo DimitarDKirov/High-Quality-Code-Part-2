@@ -29,5 +29,7 @@ public class WebServerConsole
 
             requestBuilder.AppendLine(inputLine);
         }
+
+        Console.WriteLine("end");
     }
 }
